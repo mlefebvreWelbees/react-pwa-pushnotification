@@ -3,9 +3,21 @@ import './App.css';
 import { ToastContainer, Zoom } from "react-toastify";
 import Notification from "./firebaseNotifications/Notification";
 import { TokenProvider, useToken } from "./firebaseNotifications/firebase";
+import { useEffect, useState } from 'react';
 
 function App() {
   const { token } = useToken();
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!('Notification' in window)) {
+      setError('This browser does not support desktop notification');
+    } else if (!('PushManager' in window)) {
+      setError('This browser does not support push notifications');
+    } else if (Notification.permission === 'denied') {
+      setError('Notifications have been denied by the user');
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -36,7 +48,7 @@ function App() {
         >
           Learn React
         </a>
-        {token && <p>Current Token: {token}</p>}
+        {error ? <p>{error}</p> : token && <p>Current Token: {token}</p>}
       </header>
     </div>
   );
