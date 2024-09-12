@@ -19,6 +19,18 @@ function App() {
     }
   }, []);
 
+  const requestNotificationPermission = () => {
+    window.Notification.requestPermission().then(permission => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
+      } else {
+        console.log('Notification permission denied.');
+      }
+    }).catch(error => {
+      console.error('Error requesting notification permission:', error);
+    });
+  };
+
   return (
     <div className="App">
       <ToastContainer
@@ -37,18 +49,8 @@ function App() {
       <Notification />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
         {error ? <p>{error}</p> : token && <p>Current Token: {token}</p>}
+        <button onClick={requestNotificationPermission}>Enable Notifications</button>
       </header>
     </div>
   );
