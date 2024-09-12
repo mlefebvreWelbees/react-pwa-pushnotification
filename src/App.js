@@ -49,7 +49,7 @@ function App() {
       <Notification />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        {error ? <p>{error}</p> : token && <p>Current Token: {token}</p>}
+        <div style={{ maxWidth: '90svw', height: 'fit-content' }}>{error ? <p>{error}</p> : token && <p style={{ maxWidth: '100%', textWrap: 'wrap', wordWrap: 'break-word', maxWidth: '90svw' }}>{token}</p>}</div>
         <button onClick={requestNotificationPermission}>Enable Notifications</button>
       </header>
     </div>
