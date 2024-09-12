@@ -8,13 +8,12 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js');
 
 // Initialize the Firebase app in the service worker by passing the generated config
 const firebaseConfig = {
-  apiKey: "AIzaSyB3Js8U0dzBEWJPaMWnQwkYqUux_mxXOkw",
-  authDomain: "pwa-pushnotification-6b518.firebaseapp.com",
-  projectId: "pwa-pushnotification-6b518",
-  storageBucket: "pwa-pushnotification-6b518.appspot.com",
-  messagingSenderId: "376539431131",
-  appId: "1:376539431131:web:901654eacbe9f2999f8cfe",
-  measurementId: "G-3NRXFNS8H9"
+  apiKey: "AIzaSyBVBMlvqDfgEnY17Sz5UFP4WiGU--btrX0",
+  authDomain: "poc-notifs-fca78.firebaseapp.com",
+  projectId: "poc-notifs-fca78",
+  storageBucket: "poc-notifs-fca78.appspot.com",
+  messagingSenderId: "160796377488",
+  appId: "1:160796377488:web:5e35c0e51c357d3a1a7315"
 };
 
 

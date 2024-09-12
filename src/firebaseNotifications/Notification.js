@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {requestForToken, onMessageListener} from './firebase';
-import {ToastContainer, toast} from 'react-toastify';
+import {useToken, onMessageListener} from './firebase';
+import {toast} from 'react-toastify';
 
 const Notification = () => {
     const [notification, setNotification] = useState({title: '', body: ''});
+    const {requestForToken} = useToken();
     const notify = () => toast(<ToastDisplay/>);
 
     function ToastDisplay() {
@@ -17,17 +18,21 @@ const Notification = () => {
 
     useEffect(() => {
         if (notification?.title) {
-            notify()
+            notify();
         }
-    }, [notification])
+    }, [notification]);
 
-    requestForToken();
+    useEffect(() => {
+        requestForToken();
 
-    onMessageListener()
-        .then((payload) => {
-            setNotification({title: payload?.notification?.title, body: payload?.notification?.body});
-        })
-        .catch((err) => console.log('failed: ', err));
-}
+        onMessageListener()
+            .then((payload) => {
+                setNotification({title: payload?.notification?.title, body: payload?.notification?.body});
+            })
+            .catch((err) => console.log('failed: ', err));
+    }, [requestForToken]);
 
-export default Notification
+    return null;
+};
+
+export default Notification;
